@@ -1,3 +1,5 @@
+import { sleep } from "../../common";
+
 const runInBatches = async <T>(tasks: (() => Promise<T>)[], batchSize: number): Promise<T[]> => {
     const results: T[] = [];
     const workers: Promise<void>[] = [];
@@ -21,8 +23,6 @@ const runInBatches = async <T>(tasks: (() => Promise<T>)[], batchSize: number): 
     
     return results;
 }
-
-const sleep = (ms: number) => new Promise(res => setTimeout(res, ms));
 
 const tasks = [
   () => sleep(1000).then(() => "Task 1"),
